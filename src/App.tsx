@@ -25,9 +25,8 @@ const Sidebar = () => {
 
   return (
     <div className="w-64 bg-neutral-900 border-r border-neutral-800 flex flex-col h-full">
-      <div className="p-6 flex items-center gap-3 border-b border-neutral-800">
-        <div className="w-8 h-8 rounded bg-blue-500 flex items-center justify-center font-bold text-white ">E</div>
-        <span className="font-bold text-gray-100 tracking-wide text-lg">Edge AI</span>
+      <div className="p-6 flex items-center justify-center border-b border-neutral-800">
+        <img src="/logo.png" alt="Edge AI Logo" className="h-8 object-contain" style={{ filter: 'invert(1) hue-rotate(180deg) brightness(1.2)', mixBlendMode: 'screen' }} />
       </div>
       <nav className="flex-1 py-4 flex flex-col gap-1 overflow-y-auto">
         {links.map(l => (
