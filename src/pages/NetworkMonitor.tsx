@@ -34,7 +34,7 @@ export default function NetworkMonitor() {
           <h3 className="font-semibold text-slate-200 mb-4">Average Latency (ms)</h3>
           <div className="flex-1 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData}>
+              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorLat" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
@@ -44,7 +44,7 @@ export default function NetworkMonitor() {
                 <CartesianGrid strokeDasharray="3 3" stroke="neutral-800" vertical={false} />
                 <XAxis dataKey="time" stroke="#64748b" tick={{fontSize: 12}} />
                 <YAxis stroke="#64748b" tick={{fontSize: 12}} />
-                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} />
+                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(1)} ms`, 'Avg Latency']} />
                 <Area type="monotone" dataKey="avgLatency" stroke="#3b82f6" fillOpacity={1} fill="url(#colorLat)" isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
@@ -55,7 +55,7 @@ export default function NetworkMonitor() {
           <h3 className="font-semibold text-slate-200 mb-4">Average Packet Loss (%)</h3>
           <div className="flex-1 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={chartData}>
+              <AreaChart data={chartData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="colorLoss" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.3}/>
@@ -65,7 +65,7 @@ export default function NetworkMonitor() {
                 <CartesianGrid strokeDasharray="3 3" stroke="neutral-800" vertical={false} />
                 <XAxis dataKey="time" stroke="#64748b" tick={{fontSize: 12}} />
                 <YAxis stroke="#64748b" tick={{fontSize: 12}} />
-                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} />
+                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(2)} %`, 'Avg Loss']} />
                 <Area type="monotone" dataKey="avgLoss" stroke="#f59e0b" fillOpacity={1} fill="url(#colorLoss)" isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>

@@ -39,16 +39,22 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     let ws: WebSocket;
     
     const connect = () => {
-      const wsUrl = import.meta.env.VITE_WS_URL || 'ws://127.0.0.1:8000/ws/stream';
+      // Force local WebSocket if running on localhost to avoid connecting to broken cloud backend
+      const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      const wsUrl = isLocal ? 'ws://127.0.0.1:8000/ws/stream' : (import.meta.env.VITE_WS_URL || 'ws://127.0.0.1:8000/ws/stream');
+      
+      console.log("Connecting to WebSocket:", wsUrl);
       ws = new WebSocket(wsUrl);
       
-      ws.onopen = () => setConnected(true);
+      ws.onopen = () => {
+        console.log("WebSocket Connected!");
+        setConnected(true);
+      };
       
       ws.onmessage = (event) => {
         const msg = JSON.parse(event.data);
         if (msg.type === 'telemetry') {
           const data = msg.data as TelemetryData;
-          
           setTelemetry(prev => ({ ...prev, [data.device_id]: data }));
           setHistory(prev => {
             const newHistory = [...prev, data];
@@ -56,11 +62,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
             return newHistory;
           });
         } else if (msg.type === 'alert') {
-          setAlerts(prev => [msg.data, ...prev].slice(0, 100)); // Keep last 100 alerts
+          setAlerts(prev => [msg.data, ...prev].slice(0, 100));
         }
       };
       
       ws.onclose = () => {
+        console.log("WebSocket Disconnected. Reconnecting...");
         setConnected(false);
         setTimeout(connect, 3000);
       };

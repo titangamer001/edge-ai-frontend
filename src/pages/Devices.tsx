@@ -51,13 +51,13 @@ export default function Devices() {
                         <div className="w-full bg-slate-700 rounded-full h-1.5 w-16">
                           <div className={`h-1.5 rounded-full ${node.health_score! > 80 ? 'bg-emerald-500' : node.health_score! > 50 ? 'bg-amber-500' : 'bg-red-500'}`} style={{ width: `${node.health_score || 0}%` }}></div>
                         </div>
-                        <span className="text-xs">{node.health_score?.toFixed(0)}%</span>
+                        <span className="text-xs tabular-nums w-8 text-right">{node.health_score?.toFixed(0)}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4">{node.latency.toFixed(1)}</td>
-                    <td className="px-6 py-4">{node.packet_loss.toFixed(2)}</td>
-                    <td className="px-6 py-4">{node.bandwidth.toFixed(2)}</td>
-                    <td className="px-6 py-4">{new Date(node.timestamp * 1000).toLocaleTimeString()}</td>
+                    <td className="px-6 py-4 tabular-nums w-24">{node.latency.toFixed(1)}</td>
+                    <td className="px-6 py-4 tabular-nums w-24">{node.packet_loss.toFixed(2)}</td>
+                    <td className="px-6 py-4 tabular-nums w-32">{node.bandwidth.toFixed(2)}</td>
+                    <td className="px-6 py-4 tabular-nums">{new Date(node.timestamp * 1000).toLocaleTimeString()}</td>
                   </tr>
                 ))
               )}
