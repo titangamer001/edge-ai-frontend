@@ -6,7 +6,7 @@ export default function Architecture() {
     <div className="flex flex-col h-full">
       <div className="mb-6">
         <h1 className="text-2xl font-semibold text-white">System Architecture</h1>
-        <p className="text-slate-400 mt-1">Data flow from Edge sensors to AI monitoring</p>
+        <p className="text-slate-400 mt-1">Data flow from Edge sensors to monitoring dashboard</p>
       </div>
 
       <div className="bg-neutral-900 border border-neutral-800 rounded-lg flex-1 overflow-y-auto p-12 flex flex-col items-center">
@@ -35,13 +35,13 @@ export default function Architecture() {
           <ArrowDown className="text-slate-600 mt-4" size={24}/>
         </div>
 
-        {/* Layer 3: Processing & AI */}
+        {/* Layer 3: Processing */}
         <div className="flex flex-col items-center mb-8">
           <div className="px-8 py-4 bg-purple-950 border border-purple-800 rounded-lg flex items-center gap-4 min-w-[400px] justify-center">
             <Cpu className="text-purple-400" size={32}/>
             <div className="text-center">
-              <h3 className="text-white font-medium">FastAPI & AI Engine</h3>
-              <p className="text-xs text-slate-400">Scikit-Learn Isolation Forest / Data Stream</p>
+              <h3 className="text-white font-medium">FastAPI Backend</h3>
+              <p className="text-xs text-slate-400">Real-time Data Stream Processing</p>
             </div>
           </div>
           <div className="flex gap-16 mt-4">

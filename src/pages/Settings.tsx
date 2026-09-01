@@ -44,13 +44,6 @@ export default function Settings() {
             </div>
             <div className="flex items-center justify-between p-4 bg-neutral-800 rounded-md border border-neutral-800">
               <div>
-                <p className="font-medium text-white">AI Engine (Scikit-Learn)</p>
-                <p className="text-sm text-slate-400">IsolationForest Model [Loaded]</p>
-              </div>
-              <span className="px-3 py-1 bg-emerald-900 text-emerald-400 text-xs font-medium rounded-full">Active</span>
-            </div>
-            <div className="flex items-center justify-between p-4 bg-neutral-800 rounded-md border border-neutral-800">
-              <div>
                 <p className="font-medium text-white">Grafana Sync</p>
                 <p className="text-sm text-slate-400">Time-series metric push</p>
               </div>

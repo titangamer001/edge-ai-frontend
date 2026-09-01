@@ -17,9 +17,9 @@ export default function Disaster() {
 
   return (
     <div className="max-w-4xl mx-auto">
-      <div className="mb-8 border-b border-neutral-800 pb-6">
-        <h1 className="text-2xl font-semibold text-white">Disaster Scenario Simulation</h1>
-        <p className="text-slate-400 mt-2">Trigger simulated network degradation events to observe the Edge AI ML response pipeline.</p>
+      <div className="mb-6">
+        <h1 className="text-2xl font-semibold text-white">Disaster Simulation</h1>
+        <p className="text-slate-400 mt-2">Trigger simulated network degradation events to observe the response pipeline.</p>
       </div>
 
       <div className="bg-neutral-900 border border-neutral-800 rounded-lg p-6 mb-6">
