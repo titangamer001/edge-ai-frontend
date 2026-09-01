@@ -44,7 +44,7 @@ export default function NetworkMonitor() {
                 <CartesianGrid strokeDasharray="3 3" stroke="neutral-800" vertical={false} />
                 <XAxis dataKey="time" stroke="#64748b" tick={{fontSize: 12}} />
                 <YAxis stroke="#64748b" tick={{fontSize: 12}} />
-                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(1)} ms`, 'Avg Latency']} />
+                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(1)} ms`, 'Avg Latency']} isAnimationActive={false} />
                 <Area type="monotone" dataKey="avgLatency" stroke="#3b82f6" fillOpacity={1} fill="url(#colorLat)" isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
@@ -65,7 +65,7 @@ export default function NetworkMonitor() {
                 <CartesianGrid strokeDasharray="3 3" stroke="neutral-800" vertical={false} />
                 <XAxis dataKey="time" stroke="#64748b" tick={{fontSize: 12}} />
                 <YAxis stroke="#64748b" tick={{fontSize: 12}} />
-                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(2)} %`, 'Avg Loss']} />
+                <Tooltip contentStyle={{backgroundColor: '#0f172a', borderColor: 'neutral-800', color: '#fff'}} formatter={(value: number) => [`${value.toFixed(2)} %`, 'Avg Loss']} isAnimationActive={false} />
                 <Area type="monotone" dataKey="avgLoss" stroke="#f59e0b" fillOpacity={1} fill="url(#colorLoss)" isAnimationActive={false} />
               </AreaChart>
             </ResponsiveContainer>
