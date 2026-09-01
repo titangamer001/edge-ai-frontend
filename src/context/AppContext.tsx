@@ -9,6 +9,8 @@ type TelemetryData = {
   is_anomaly: boolean;
   health_score?: number;
   timestamp: number;
+  proxy_mode?: boolean;
+  reporter?: string;
 };
 
 type AlertData = {

@@ -34,10 +34,17 @@ export default function Devices() {
                   <tr key={node.device_id} className="border-b border-neutral-800 hover:bg-neutral-800">
                     <td className="px-6 py-4 font-medium text-white">{node.device_id}</td>
                     <td className="px-6 py-4">
-                      <span className="flex items-center gap-2">
-                        <div className={`w-2 h-2 rounded-full ${node.is_anomaly ? 'bg-red-500' : 'bg-emerald-500'}`}></div>
-                        {node.is_anomaly ? 'Degraded' : 'Online'}
-                      </span>
+                      {node.proxy_mode ? (
+                        <span className="flex items-center gap-2 text-amber-500 font-bold border border-amber-500/50 px-2 py-1 rounded bg-amber-500/10 text-xs w-max">
+                          <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
+                          PROXY ACTIVE (DB CACHE)
+                        </span>
+                      ) : (
+                        <span className="flex items-center gap-2">
+                          <div className={`w-2 h-2 rounded-full ${node.is_anomaly ? 'bg-red-500' : 'bg-emerald-500'}`}></div>
+                          {node.is_anomaly ? 'Degraded' : 'Online'}
+                        </span>
+                      )}
                     </td>
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-2">
