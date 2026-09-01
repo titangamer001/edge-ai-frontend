@@ -80,7 +80,10 @@ export default function Overview() {
         <div className="bg-neutral-900 border border-neutral-800 p-5 rounded-lg flex items-start justify-between">
           <div>
             <p className="text-sm text-slate-400 mb-1">Avg Latency</p>
-            <p className="text-3xl font-bold text-white tabular-nums inline-block w-24">{avgLatency.toFixed(1)} <span className="text-base font-normal text-slate-500">ms</span></p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-3xl font-bold text-white tabular-nums w-24 text-right">{avgLatency.toFixed(1)}</span>
+              <span className="text-base font-normal text-slate-500">ms</span>
+            </div>
           </div>
           <div className="p-3 bg-emerald-950 rounded-lg text-emerald-400"><Activity size={24} /></div>
         </div>
@@ -88,7 +91,10 @@ export default function Overview() {
         <div className="bg-neutral-900 border border-neutral-800 p-5 rounded-lg flex items-start justify-between">
           <div>
             <p className="text-sm text-slate-400 mb-1">Avg Packet Loss</p>
-            <p className="text-3xl font-bold text-white tabular-nums inline-block w-24">{avgLoss.toFixed(2)} <span className="text-base font-normal text-slate-500">%</span></p>
+            <div className="flex items-baseline gap-1">
+              <span className="text-3xl font-bold text-white tabular-nums w-20 text-right">{avgLoss.toFixed(2)}</span>
+              <span className="text-base font-normal text-slate-500">%</span>
+            </div>
           </div>
           <div className="p-3 bg-indigo-950 rounded-lg text-indigo-400"><CloudOff size={24} /></div>
         </div>

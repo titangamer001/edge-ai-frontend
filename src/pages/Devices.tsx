@@ -14,36 +14,40 @@ export default function Devices() {
 
       <div className="bg-neutral-900 border border-neutral-800 rounded-lg flex-1 overflow-hidden flex flex-col">
         <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left text-slate-400">
+          <table className="w-full text-sm text-left text-slate-400 table-fixed">
             <thead className="text-xs text-slate-300 uppercase bg-[#0f172a] border-b border-neutral-800">
               <tr>
-                <th className="px-6 py-4">Device ID</th>
-                <th className="px-6 py-4">Status</th>
-                <th className="px-6 py-4">Health</th>
-                <th className="px-6 py-4">Latency (ms)</th>
-                <th className="px-6 py-4">Loss (%)</th>
-                <th className="px-6 py-4">Bandwidth (MB/s)</th>
-                <th className="px-6 py-4">Last Seen</th>
+                <th className="px-6 py-4 w-48">Device ID</th>
+                <th className="px-6 py-4 w-40">Status</th>
+                <th className="px-6 py-4 w-32">Health</th>
+                <th className="px-6 py-4 w-32 text-right">Latency (ms)</th>
+                <th className="px-6 py-4 w-28 text-right">Loss (%)</th>
+                <th className="px-6 py-4 w-40 text-right">Bandwidth (MB/s)</th>
+                <th className="px-6 py-4 text-right">Last Seen</th>
               </tr>
             </thead>
             <tbody>
               {nodes.length === 0 ? (
-                <tr><td colSpan={7} className="px-6 py-8 text-center text-slate-500">Waiting for device telemetry...</td></tr>
+                <tr>
+                  <td colSpan={7} className="px-6 py-8 text-center text-slate-500">
+                    No active IoT devices.
+                  </td>
+                </tr>
               ) : (
                 nodes.sort((a,b) => a.device_id.localeCompare(b.device_id)).map((node) => (
-                  <tr key={node.device_id} className="border-b border-neutral-800 hover:bg-neutral-800">
+                  <tr key={node.device_id} className="border-b border-neutral-800 hover:bg-neutral-800/50">
                     <td className="px-6 py-4 font-medium text-white">{node.device_id}</td>
                     <td className="px-6 py-4">
                       {node.proxy_mode ? (
-                        <span className="flex items-center gap-2 text-amber-500 font-bold border border-amber-500/50 px-2 py-1 rounded bg-amber-500/10 text-xs w-max">
+                        <div className="flex items-center gap-2 text-amber-500">
                           <div className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></div>
-                          PROXY ACTIVE (DB CACHE)
-                        </span>
+                          <span className="text-xs font-bold uppercase tracking-wider bg-amber-500/10 px-2 py-1 rounded">Proxy Active (DB Cache)</span>
+                        </div>
                       ) : (
-                        <span className="flex items-center gap-2">
-                          <div className={`w-2 h-2 rounded-full ${node.is_anomaly ? 'bg-red-500' : 'bg-emerald-500'}`}></div>
-                          {node.is_anomaly ? 'Degraded' : 'Online'}
-                        </span>
+                        <div className="flex items-center gap-2">
+                          <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+                          <span>Online</span>
+                        </div>
                       )}
                     </td>
                     <td className="px-6 py-4">
@@ -54,10 +58,10 @@ export default function Devices() {
                         <span className="text-xs tabular-nums w-8 text-right">{node.health_score?.toFixed(0)}%</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 tabular-nums w-24">{node.latency.toFixed(1)}</td>
-                    <td className="px-6 py-4 tabular-nums w-24">{node.packet_loss.toFixed(2)}</td>
-                    <td className="px-6 py-4 tabular-nums w-32">{node.bandwidth.toFixed(2)}</td>
-                    <td className="px-6 py-4 tabular-nums">{new Date(node.timestamp * 1000).toLocaleTimeString()}</td>
+                    <td className="px-6 py-4 tabular-nums text-right">{node.latency.toFixed(1)}</td>
+                    <td className="px-6 py-4 tabular-nums text-right">{node.packet_loss.toFixed(2)}</td>
+                    <td className="px-6 py-4 tabular-nums text-right">{node.bandwidth.toFixed(2)}</td>
+                    <td className="px-6 py-4 tabular-nums text-right">{new Date(node.timestamp * 1000).toLocaleTimeString()}</td>
                   </tr>
                 ))
               )}
