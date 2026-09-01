@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, NavLink } from 'react-router-dom';
-import { Activity, Server, Cpu, AlertTriangle, CloudRain, LayoutDashboard, Settings as SettingsIcon, Network } from 'lucide-react';
+import { Activity, Server, AlertTriangle, CloudRain, LayoutDashboard, Settings as SettingsIcon, Network } from 'lucide-react';
 import { AppProvider, useAppContext } from './context/AppContext';
 
 // Placeholder Pages
@@ -9,7 +9,6 @@ import Devices from './pages/Devices';
 import Alerts from './pages/Alerts';
 import Disaster from './pages/Disaster';
 import NetworkMonitor from './pages/NetworkMonitor';
-import AiAnomaly from './pages/AiAnomaly';
 import Architecture from './pages/Architecture';
 import Settings from './pages/Settings';
 
@@ -18,7 +17,6 @@ const Sidebar = () => {
     { to: "/overview", icon: <LayoutDashboard size={20} />, label: "Overview" },
     { to: "/network", icon: <Activity size={20} />, label: "Network Monitor" },
     { to: "/devices", icon: <Server size={20} />, label: "IoT Devices" },
-    { to: "/ai-detection", icon: <Cpu size={20} />, label: "AI Anomaly Detection" },
     { to: "/alerts", icon: <AlertTriangle size={20} />, label: "Alerts" },
     { to: "/disaster", icon: <CloudRain size={20} />, label: "Disaster Monitor" },
     { to: "/architecture", icon: <Network size={20} />, label: "System Architecture" },
@@ -62,10 +60,6 @@ const Header = () => {
           <div className={`w-2 h-2 rounded-full ${connected ? 'bg-emerald-500 ' : 'bg-red-500'}`}></div>
           <span className="text-xs text-slate-300 font-medium">{connected ? 'MQTT LIVE' : 'OFFLINE'}</span>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1.5 bg-purple-950 rounded-full border border-purple-800">
-          <Cpu size={14} className="text-purple-400" />
-          <span className="text-xs text-purple-400 font-medium">AI ENGINE ACTIVE</span>
-        </div>
       </div>
     </header>
   );
@@ -93,7 +87,6 @@ export default function App() {
             <Route path="/overview" element={<Overview />} />
             <Route path="/network" element={<NetworkMonitor />} />
             <Route path="/devices" element={<Devices />} />
-            <Route path="/ai-detection" element={<AiAnomaly />} />
             <Route path="/alerts" element={<Alerts />} />
             <Route path="/disaster" element={<Disaster />} />
             <Route path="/architecture" element={<Architecture />} />

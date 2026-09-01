@@ -5,8 +5,6 @@ type TelemetryData = {
   latency: number;
   packet_loss: number;
   bandwidth: number;
-  anomaly_score: number;
-  is_anomaly: boolean;
   health_score?: number;
   timestamp: number;
   proxy_mode?: boolean;
