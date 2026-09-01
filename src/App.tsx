@@ -11,6 +11,17 @@ import Disaster from './pages/Disaster';
 import NetworkMonitor from './pages/NetworkMonitor';
 import Architecture from './pages/Architecture';
 import Settings from './pages/Settings';
+import Login from './pages/Login';
+import AuthCallback from './pages/AuthCallback';
+
+const AuthGuard = ({ children }: { children: React.ReactNode }) => {
+  const token = localStorage.getItem('edge_auth_token');
+  const path = window.location.pathname;
+  if (!token && path !== '/auth/callback') {
+    return <Login />;
+  }
+  return <>{children}</>;
+};
 
 const Sidebar = () => {
   const links = [
@@ -80,18 +91,25 @@ export default function App() {
   return (
     <AppProvider>
       <BrowserRouter>
-        <Layout>
+        <AuthGuard>
           <Routes>
-            <Route path="/" element={<Navigate to="/overview" replace />} />
-            <Route path="/overview" element={<Overview />} />
-            <Route path="/network" element={<NetworkMonitor />} />
-            <Route path="/devices" element={<Devices />} />
-            <Route path="/alerts" element={<Alerts />} />
-            <Route path="/disaster" element={<Disaster />} />
-            <Route path="/architecture" element={<Architecture />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="*" element={
+              <Layout>
+                <Routes>
+                  <Route path="/" element={<Navigate to="/overview" replace />} />
+                  <Route path="/overview" element={<Overview />} />
+                  <Route path="/devices" element={<Devices />} />
+                  <Route path="/network" element={<NetworkMonitor />} />
+                  <Route path="/alerts" element={<Alerts />} />
+                  <Route path="/disaster" element={<Disaster />} />
+                  <Route path="/architecture" element={<Architecture />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Routes>
+              </Layout>
+            } />
           </Routes>
-        </Layout>
+        </AuthGuard>
       </BrowserRouter>
     </AppProvider>
   );
