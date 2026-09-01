@@ -15,6 +15,18 @@ export default function Disaster() {
     }
   };
 
+  const setNetworkState = async (action: 'pause' | 'resume') => {
+    setStatus(`${action === 'pause' ? 'Stopping' : 'Resuming'} network simulation...`);
+    try {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+      const res = await fetch(`${apiUrl}/api/simulation/${action}`, { method: 'POST' });
+      const data = await res.json();
+      setStatus(data.status);
+    } catch (e) {
+      setStatus("Failed to communicate with API server.");
+    }
+  };
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="mb-6">
@@ -56,6 +68,21 @@ export default function Disaster() {
           <h3 className="text-lg font-medium text-white mb-2">Normalize Network (Recover)</h3>
           <p className="text-sm text-slate-400 mb-4">Clears all disaster conditions and returns the simulated edge environment to optimal baseline thresholds.</p>
           <button onClick={() => triggerDisaster('clear')} className="px-4 py-2 bg-emerald-950 text-emerald-500 hover:bg-emerald-900 border border-emerald-800 rounded-md text-sm font-medium transition-colors w-full">Execute Recovery</button>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <div className="bg-neutral-900 border border-neutral-700 rounded-lg p-6 hover:border-blue-500 transition-colors">
+          <div className="text-blue-500 mb-3"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg></div>
+          <h3 className="text-lg font-medium text-white mb-2">Halt Network (Pause)</h3>
+          <p className="text-sm text-slate-400 mb-4">Temporarily suspends all telemetry generation to monitor the static state of the network.</p>
+          <button onClick={() => setNetworkState('pause')} className="px-4 py-2 bg-blue-950 text-blue-500 hover:bg-blue-900 border border-blue-800 rounded-md text-sm font-medium transition-colors w-full">Stop Network</button>
+        </div>
+
+        <div className="bg-neutral-900 border border-neutral-700 rounded-lg p-6 hover:border-emerald-500 transition-colors">
+          <div className="text-emerald-500 mb-3"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+          <h3 className="text-lg font-medium text-white mb-2">Resume Network</h3>
+          <p className="text-sm text-slate-400 mb-4">Restores telemetry generation and continues simulating standard Edge AI operations.</p>
+          <button onClick={() => setNetworkState('resume')} className="px-4 py-2 bg-emerald-950 text-emerald-500 hover:bg-emerald-900 border border-emerald-800 rounded-md text-sm font-medium transition-colors w-full">Start Network</button>
         </div>
       </div>
     </div>
